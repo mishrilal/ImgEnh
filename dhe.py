@@ -107,5 +107,16 @@ def main():
     plt.show()
 
 
+def analyse(img):
+    imgName = img
+    img_name = 'uploads/' + img
+    img = imageio.imread(img_name)
+    result = dhe(img)
+    # plt.imshow(result)
+    # plt.show()
+    savePath = 'outputs/'
+    plt.imsave(savePath + imgName, result)
+
+
 if __name__ == '__main__':
     main()

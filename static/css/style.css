@@ -2,3 +2,10 @@
     padding-top: 20px;
 }
 
+.formAlign {
+    display:flex;
+}
+
+.btn-analysis {
+    margin: 10px;
+}
