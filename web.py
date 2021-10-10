@@ -1,10 +1,10 @@
 import os.path
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from werkzeug.utils import secure_filename, redirect
 
 import dhe
 import he
-import ying
+import eff
 
 UPLOAD_FOLDER = '/uploads'
 filename = ""
@@ -27,7 +27,7 @@ def upload_file():
         f = request.files['file']
         global filename
         filename = secure_filename(f.filename)
-        systemPath = os.getcwd()                # OS Dir Path - Change this for Hosting
+        systemPath = os.getcwd()  # OS Dir Path - Change this for Hosting
         f.save(systemPath + app.config['UPLOAD_FOLDER'] + '/' + filename)
         return redirect(request.referrer)
 
@@ -44,15 +44,27 @@ def analyseHE():
     return redirect(request.referrer)
 
 
-@app.route('/ying', methods=['POST'])
+@app.route('/eff', methods=['POST'])
 def analyseYING():
-    ying.analyse(filename)
+    eff.analyse(filename)
     return redirect(request.referrer)
 
 
 # @app.route('/dhe', methods='POST')
 # def analyseDHE():
 #     dhe.analyse(filename)
+
+
+@app.route('/download')
+def downloadImg():
+    path = 'outputs/' + filename
+    return send_file(path, as_attachment=True)
+
+
+@app.route('/background_process_test')
+def background_process_test():
+    print("Hello")
+    return "nothing"
 
 
 if __name__ == '__main__':

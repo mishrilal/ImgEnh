@@ -1,9 +1,12 @@
-import numpy as np
-import matplotlib.pyplot as plt
-import imageio
-import scipy, scipy.misc, scipy.signal
-import cv2
 import sys
+
+import cv2
+import imageio
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy
+import scipy.misc
+import scipy.signal
 
 
 def computeTextureWeights(fin, sigma, sharpness):
@@ -61,7 +64,7 @@ def tsmooth(img, lamda=0.01, sigma=3.0, sharpness=0.001):
 
 
 def rgb2gm(I):
-    if (I.shape[2] == 3):
+    if I.shape[2] == 3:
         I = cv2.normalize(I.astype('float64'), None, 0.0, 1.0, cv2.NORM_MINMAX)
         I = (I[:, :, 0] * I[:, :, 1] * I[:, :, 2]) ** (1 / 3)
 
@@ -113,7 +116,7 @@ def maxEntropyEnhance(I, isBad, a=-0.3293, b=1.1258):
     return J
 
 
-def Ying_2017_CAIP(img, mu=0.5, a=-0.3293, b=1.1258):
+def EFF(img, mu=0.5, a=-0.3293, b=1.1258):
     lamda = 0.5
     sigma = 5
     I = cv2.normalize(img.astype('float64'), None, 0.0, 1.0, cv2.NORM_MINMAX)
@@ -146,7 +149,7 @@ def Ying_2017_CAIP(img, mu=0.5, a=-0.3293, b=1.1258):
 def main():
     img_name = sys.argv[1]
     img = imageio.imread(img_name)
-    result = Ying_2017_CAIP(img)
+    result = EFF(img)
     plt.imshow(result)
     plt.show()
 
@@ -155,7 +158,7 @@ def analyse(img):
     imgName = img
     img_name = 'uploads/' + img
     img = imageio.imread(img_name)
-    result = Ying_2017_CAIP(img)
+    result = EFF(img)
     # plt.imshow(result)
     # plt.show()
     savePath = 'outputs/'
