@@ -1,10 +1,38 @@
+// Runs analyseDHE from web.py
 $(function() {
-  $('#test').on('click', function(e) {
+  $('#dhe').on('click', function(e) {
     e.preventDefault()
-    $.getJSON('/background_process_test',
+    $.getJSON('/dhe',
         function(data) {
       //do nothing
     });
     return false;
   });
 });
+
+// Runs analyseHE from web.py
+$(function() {
+  $('#he').on('click', function(e) {
+    e.preventDefault()
+    $.getJSON('/he',
+        function(data) {
+      //do nothing
+    });
+    return false;
+  });
+});
+
+// Runs analyseEFF from web.py
+$(function() {
+  $('#eff').on('click', function(e) {
+    e.preventDefault()
+    $.getJSON('/eff',
+        function(data) {
+      //do nothing
+    });
+    return false;
+  });
+});
+
+
+

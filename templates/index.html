@@ -11,36 +11,32 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Upload Image</h5>
-<!--                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
 
               <form action = "/uploader" method = "POST" enctype = "multipart/form-data">
-                 <input type = "file" name = "file" />
-                 <button type="submit" value="submit" class="btn btn-secondary">Upload</button>
-              </form>
 
+                  <div class="form-group files">
+                  <input type="file" name="file" class="form-control">
+                </div>
+
+                <button id="upload" type="submit" value="submit" class="btn btn-secondary mt-10">Upload</button>
+
+              </form>
+                <hr>
               <div class="formAlign">
 
-                <form action = "dhe" method="POST" enctype="multipart/form-data">
-                  <button type="submit" value="submit" class="btn btn-primary btn-analysis">DHE</button>
-                </form>
-
-                 <form action = "he" method="POST" enctype="multipart/form-data">
-                  <button type="submit" value="submit" class="btn btn-primary btn-analysis">HE</button>
-                </form>
-
-                <form action = "eff" method="POST" enctype="multipart/form-data">
-                  <button type="submit" value="submit" class="btn btn-primary btn-analysis">EFF*</button>
-                </form>
+                <button id='dhe' class='btn btn-primary btn-analysis'>DHE</button>
+                <button id='he' class='btn btn-primary btn-analysis'>HE</button>
+                <button id='eff' class='btn btn-primary btn-analysis'>EFF*</button>
 
               </div>
             </div>
           </div>
         </div>
+
         <div class="col-sm-6">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Enhanced Image</h5>
-<!--                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
               <form action = "download" enctype="multipart/form-data">
                 <button type="submit" value="submit" class="btn btn-primary btn-analysis">Download</button>
               </form>
@@ -50,6 +46,4 @@
       </div>
   </div>
 
-
-  <button id='test' class='btn btn-default'>Test</button>
 {% endblock %}
