@@ -32,39 +32,28 @@ def upload_file():
         return redirect(request.referrer)
 
 
-@app.route('/dhe', methods=['POST'])
+@app.route('/dhe')
 def analyseDHE():
     dhe.analyse(filename)
-    return redirect(request.referrer)
+    return "nothing"
 
 
-@app.route('/he', methods=['POST'])
+@app.route('/he')
 def analyseHE():
     he.analyse(filename)
-    return redirect(request.referrer)
+    return "nothing"
 
 
-@app.route('/eff', methods=['POST'])
+@app.route('/eff')
 def analyseYING():
     eff.analyse(filename)
-    return redirect(request.referrer)
-
-
-# @app.route('/dhe', methods='POST')
-# def analyseDHE():
-#     dhe.analyse(filename)
+    return "nothing"
 
 
 @app.route('/download')
 def downloadImg():
     path = 'outputs/' + filename
     return send_file(path, as_attachment=True)
-
-
-@app.route('/background_process_test')
-def background_process_test():
-    print("Hello")
-    return "nothing"
 
 
 if __name__ == '__main__':

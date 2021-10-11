@@ -7,5 +7,5 @@
 * scikit-image~=0.17.2
 * scipy~=1.7.0
 * flask~=2.0.2
-* opencv~=4.5.3
+* opencv-python~=4.5.3
 * werkzeug~=2.0.1
