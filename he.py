@@ -28,7 +28,7 @@ def main():
 
 def analyse(img):
     imgName = img
-    img_name = 'uploads/' + img
+    img_name = 'static/uploads/' + img
     img = imageio.imread(img_name)
     result = he(img)
     # plt.imshow(result)

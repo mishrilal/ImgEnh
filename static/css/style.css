@@ -61,3 +61,11 @@
     text-transform: capitalize;
     text-align: center;
 }
+
+#first {
+  display: none
+}
+
+#downloadImg {
+    display: none;
+}
