@@ -42,15 +42,12 @@
                 </form>
                 <div id="loader-icon" style="display:none;"><img src="/static/img/loader.gif" /></div>
 
-                <hr>
-                <button class="b1" onClick="myFunction()">Show</button>
               <div class="formAlign">
-
                 <button id='dhe' class='btn btn-primary btn-analysis'>DHE</button>
                 <button id='he' class='btn btn-primary btn-analysis'>HE</button>
                 <button id='eff' class='btn btn-primary btn-analysis'>EFF*</button>
-
               </div>
+
             </div>
           </div>
         </div>
@@ -59,9 +56,11 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Enhanced Image</h5>
-                <div id="downloadImg" >
-                    <img src="{{ url_for('download') }}" width="100%" height="100%">
-                </div>
+                <div id="displayLayer" style="display:none;"></div>
+                <div id="process-icon" style="display:none;"><img src="/static/img/loader.gif" /></div>
+<!--                <div id="downloadImg" >-->
+<!--                    <img src="{{ url_for('download') }}" width="100%" height="100%">-->
+<!--                </div>-->
               <form action = "download" enctype="multipart/form-data">
                 <button type="submit" value="submit" class="btn btn-primary btn-analysis">Download</button>
               </form>

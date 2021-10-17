@@ -1,62 +1,4 @@
-$(function() {
-    $('#upload').click(function(){
-        var fd = new FormData($('#file')[0]);
-        fd.stopPropogation();
-        $.ajax({
-            type: 'POST',
-            url: '/',
-            data: form_data,
-            contentType: false,
-            cache: false,
-            processData: false,
-            success: function(data) {
-                console.log('Success!');
-                // Hide Upload Img Block and Display Image
-                document.getElementById("first").style.display ='block';
-                document.getElementById("uploadForm").style.display='none';
-            },
-        });
-    });
-});
-
-// Runs analyseDHE from web.py
-$(function() {
-  $('#dhe').on('click', function(e) {
-    e.preventDefault()
-    $.getJSON('/dhe',
-        function(data) {
-      //do nothing
-    });
-    showDImg()
-    return false;
-  });
-});
-
-// Runs analyseHE from web.py
-$(function() {
-  $('#he').on('click', function(e) {
-    e.preventDefault()
-    $.getJSON('/he',
-        function(data) {
-      //do nothing
-    });
-    showDImg()
-    return false;
-  });
-});
-
-// Runs analyseEFF from web.py
-$(function() {
-  $('#eff').on('click', function(e) {
-    e.preventDefault()
-    $.getJSON('/eff',
-        function(data) {
-      //do nothing
-    });
-    return false;
-  });
-});
-
+// Input Image
 $(document).ready(function(){
     $('#uploadImage').submit(function(event){
         if($('#uploadFile').val()){
@@ -81,8 +23,7 @@ $(document).ready(function(){
                 },
                 success:function(data){
                     $('#loader-icon').hide();
-                    $('#targetLayer').show();
-                    $('#targetLayer').append(data.htmlresponse);
+                    $('#targetLayer').append(data.htmlresponse).show();
                 },
                 resetForm: true
             });
@@ -91,11 +32,60 @@ $(document).ready(function(){
     });
 });
 
-const myFunction = () => {
-  document.getElementById("first").style.display ='block';
-  document.getElementById("uploadForm").style.display='none';
-}
+// Runs analyseDHE from web.py
+$(function() {
+  $('#dhe').on('click', function(e) {
+    e.preventDefault();
+      $('#process-icon').show();
+      $('#displayLayer').hide();
+      clearBox('displayLayer');
 
-const showDImg = () => {
-    document.getElementById("downloadImg").style.display='block';
+      $.getJSON('/dhe',
+        function(data) {
+        console.log("in function");
+        $('#process-icon').hide();
+        $('#displayLayer').append(data.htmlresponse).show();
+      });
+    return false;
+  });
+});
+
+// Runs analyseHE from web.py
+$(function() {
+    console.log("in Main Function");
+  $('#he').on('click', function(e) {
+      console.log("Above Function")
+      e.preventDefault();
+      $('#process-icon').show();
+      $('#displayLayer').hide();
+      clearBox('displayLayer');
+
+      $.getJSON('/he',
+        function(data) {
+        console.log("in function");
+        $('#process-icon').hide();
+        $('#displayLayer').append(data.htmlresponse).show();
+      });
+
+      return false;
+  });
+});
+
+// Runs analyseEFF from web.py
+$(function() {
+  $('#eff').on('click', function(e) {
+    e.preventDefault()
+    $.getJSON('/eff',
+        function(data) {
+      //do nothing
+    });
+    return false;
+  });
+});
+
+function clearBox(elementID) {
+    var div = document.getElementById(elementID);
+    while(div.firstChild) {
+        div.removeChild(div.firstChild);
+    }
 }

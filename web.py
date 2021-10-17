@@ -1,4 +1,5 @@
 import os.path
+import time
 from datetime import datetime
 
 from flask import Flask, render_template, request, send_file, send_from_directory, jsonify
@@ -13,7 +14,7 @@ filenameG = ""
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_PATH'] = 'static/uploads'
-app.config['DOWNLOAD_PATH'] = 'outputs'
+app.config['DOWNLOAD_PATH'] = 'static/outputs'
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -24,13 +25,13 @@ def allowed_file(filename):
 
 @app.route("/", methods=["POST", "GET"])
 def hello_world():
-    if request.method == "POST":
-        f = request.files['file']
-        global filenameG
-        filenameG = secure_filename(f.filename)
-        systemPath = os.getcwd()  # OS Dir Path - Change this for Hosting
-        f.save(systemPath + app.config['UPLOAD_FOLDER'] + '/' + filenameG)
-    files = os.listdir(app.config['UPLOAD_PATH'])
+    # if request.method == "POST":
+    #     f = request.files['file']
+    #     global filenameG
+    #     filenameG = secure_filename(f.filename)
+    #     systemPath = os.getcwd()  # OS Dir Path - Change this for Hosting
+    #     f.save(systemPath + app.config['UPLOAD_FOLDER'] + '/' + filenameG)
+    # files = os.listdir(app.config['UPLOAD_PATH'])
     return render_template('index.html')
 
 
@@ -52,14 +53,13 @@ def analyseDHE():
 @app.route('/dhe')
 def analyseDHE():
     dhe.analyse(filenameG)
-    return "nothing"
+    return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=filenameG)})
 
 
-@app.route('/he')
+@app.route('/he', methods=['GET', 'POST'])
 def analyseHE():
     he.analyse(filenameG)
-    return "nothing"
-
+    return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=filenameG)})
 
 @app.route('/eff')
 def analyseYING():
@@ -67,10 +67,10 @@ def analyseYING():
     return "nothing"
 
 
-# @app.route('/download')
-# def downloadImg():
-#     path = 'outputs/' + filenameG
-#     return send_file(path, as_attachment=True)
+@app.route('/download')
+def download():
+    path = 'static/outputs/' + filenameG
+    return send_file(path, as_attachment=True)
 
 
 # @app.route('/uploads')
@@ -84,6 +84,8 @@ def analyseYING():
 def upload():
     file = request.files['uploadFile']
     filename = secure_filename(file.filename)
+    global filenameG
+    filenameG = filename
     if file and allowed_file(file.filename):
         systemPath = os.getcwd()
         file.save(systemPath + '/' + app.config['UPLOAD_FOLDER'] + '/' + filename)
@@ -100,9 +102,9 @@ def upload():
     return jsonify({'htmlresponse': render_template('response.html', msg=msg, filenameImage=filenameImage)})
 
 
-@app.route('/download')
-def download():
-    return send_from_directory(app.config['DOWNLOAD_PATH'], filenameG)
+# @app.route('/download')
+# def download():
+#     return send_from_directory(app.config['DOWNLOAD_PATH'], filenameG)
 
 
 if __name__ == '__main__':

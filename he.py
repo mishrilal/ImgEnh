@@ -33,7 +33,7 @@ def analyse(img):
     result = he(img)
     # plt.imshow(result)
     # plt.show()
-    savePath = 'outputs/'
+    savePath = 'static/outputs/'
     plt.imsave(savePath + imgName, result)
 
 
