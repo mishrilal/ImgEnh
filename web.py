@@ -10,7 +10,9 @@ import he
 import eff
 
 UPLOAD_FOLDER = 'static/uploads'
-filenameG = ""
+fileAnalyse = ""
+fileDownload = ""
+filenameImage = ""
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_PATH'] = 'static/uploads'
@@ -35,57 +37,39 @@ def hello_world():
     return render_template('index.html')
 
 
-def analyseDHE():
-    dhe.analyse(filenameG)
-
-
-# @app.route('/uploader', methods=['POST'])
-# def upload_file():
-#     if request.method == 'POST':
-#         f = request.files['file']
-#         global filename
-#         filename = secure_filename(f.filename)
-#         systemPath = os.getcwd()  # OS Dir Path - Change this for Hosting
-#         f.save(systemPath + app.config['UPLOAD_FOLDER'] + '/' + filename)
-#         return redirect(request.referrer)
-
-
 @app.route('/dhe')
 def analyseDHE():
-    dhe.analyse(filenameG)
-    return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=filenameG)})
+    global fileDownload
+    fileDownload = dhe.analyse(fileAnalyse)
+    return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=fileDownload)})
 
 
 @app.route('/he', methods=['GET', 'POST'])
 def analyseHE():
-    he.analyse(filenameG)
-    return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=filenameG)})
+    global fileDownload
+    fileDownload = he.analyse(fileAnalyse)
+    return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=fileDownload)})
+
 
 @app.route('/eff')
-def analyseYING():
-    eff.analyse(filenameG)
-    return "nothing"
+def analyseEFF():
+    global fileDownload
+    fileDownload = eff.analyse(fileAnalyse)
+    return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=fileDownload)})
 
 
 @app.route('/download')
 def download():
-    path = 'static/outputs/' + filenameG
+    path = 'static/outputs/' + fileDownload
     return send_file(path, as_attachment=True)
 
-
-# @app.route('/uploads')
-# def upload():
-#     return send_from_directory(app.config['UPLOAD_PATH'], filename)
-
-# systemPath = os.getcwd()  # OS Dir Path - Change this for Hosting
-#         f.save(systemPath + app.config['UPLOAD_FOLDER'] + '/' + filename)
 
 @app.route("/upload", methods=["POST", "GET"])
 def upload():
     file = request.files['uploadFile']
     filename = secure_filename(file.filename)
-    global filenameG
-    filenameG = filename
+    global fileAnalyse, filenameImage
+    fileAnalyse = filename
     if file and allowed_file(file.filename):
         systemPath = os.getcwd()
         file.save(systemPath + '/' + app.config['UPLOAD_FOLDER'] + '/' + filename)
@@ -100,11 +84,6 @@ def upload():
     else:
         msg = 'Invalid Upload only png, jpg, jpeg, gif'
     return jsonify({'htmlresponse': render_template('response.html', msg=msg, filenameImage=filenameImage)})
-
-
-# @app.route('/download')
-# def download():
-#     return send_from_directory(app.config['DOWNLOAD_PATH'], filenameG)
 
 
 if __name__ == '__main__':

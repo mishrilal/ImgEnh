@@ -114,8 +114,12 @@ def analyse(img):
     result = dhe(img)
     # plt.imshow(result)
     # plt.show()
+    filename = imgName.rsplit('.', 1)[0]
+    fileExt = imgName.rsplit('.', 1)[1]
+    imgName = filename + '-DHE.' + fileExt
     savePath = 'static/outputs/'
     plt.imsave(savePath + imgName, result)
+    return imgName
 
 
 if __name__ == '__main__':

@@ -34,7 +34,12 @@ def analyse(img):
     # plt.imshow(result)
     # plt.show()
     savePath = 'static/outputs/'
+    # imgName = imgName + '-HE'
+    filename = imgName.rsplit('.', 1)[0]
+    fileExt = imgName.rsplit('.', 1)[1]
+    imgName = filename + '-HE.' + fileExt
     plt.imsave(savePath + imgName, result)
+    return imgName
 
 
 if __name__ == '__main__':

@@ -125,6 +125,10 @@ def EFF(img, mu=0.5, a=-0.3293, b=1.1258):
     t_b = np.max(I, axis=2)
     t_our = cv2.resize(tsmooth(scipy.misc.imresize(t_b, 0.5, interp='bicubic', mode='F'), lamda, sigma),
                        (t_b.shape[1], t_b.shape[0]), interpolation=cv2.INTER_AREA)
+    # t_our = cv2.resize(tsmooth(Image.fromarray(t_b).resize((int(0.5 * t_b.shape[0]),
+    #                                                         int(t_b.shape[1] * 0.5)),
+    #                                                        resample=PIL.Image.BICUBIC), lamda, sigma),
+    #                    (t_b.shape[1], t_b.shape[0]), interpolation=cv2.INTER_AREA)
 
     # Apply camera model with k(exposure ratio)
     isBad = t_our < 0.5
@@ -162,7 +166,11 @@ def analyse(img):
     # plt.imshow(result)
     # plt.show()
     savePath = 'static/outputs/'
+    filename = imgName.rsplit('.', 1)[0]
+    fileExt = imgName.rsplit('.', 1)[1]
+    imgName = filename + '-EFF.' + fileExt
     plt.imsave(savePath + imgName, result)
+    return imgName
 
 
 if __name__ == '__main__':
