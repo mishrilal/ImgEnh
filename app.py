@@ -1,8 +1,9 @@
 import os.path
-import time
 from datetime import datetime
 from flask import Flask, render_template, request, send_file, jsonify
+from flask_mysqldb import MySQL
 from werkzeug.utils import secure_filename
+import MySQLdb.cursors
 
 import dhe
 import he
@@ -10,21 +11,22 @@ import eff
 
 app = Flask(__name__)
 
-# app.config['MYSQL_HOST'] = 'localhost'
-# app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = 'mishrilal99'
-# app.config['MYSQL_DB'] = 'ImgEnh'
-#
-# mysql = MySQL(app)
 
 UPLOAD_FOLDER = 'static/uploads'
 fileAnalyse = ""
 fileDownload = ""
 filenameImage = ""
-app = Flask(__name__)
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'mishrilal99'
+app.config['MYSQL_DB'] = 'ImgEnh'
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_PATH'] = 'static/uploads'
 app.config['DOWNLOAD_PATH'] = 'static/outputs'
+
+mysql = MySQL(app)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -83,11 +85,16 @@ def upload():
         file.save(systemPath + '/' + app.config['UPLOAD_FOLDER'] + '/' + filename)
         filenameImage = file.filename
 
-        # today = datetime.today()
-        # cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor) cur.execute("INSERT INTO uploads (file_name,
-        # upload_time) VALUES (%s,%s)", [filenameImage, today]) conn.commit() cur.close() cur =
-        # mysql.connection.cursor() cur.execute("INSERT INTO records(date, upload) VALUES (%s, %s)", (today,
-        # systemPath + '/' + app.config['UPLOAD_FOLDER'] + '/' + filename)) mysql.connection.commit() cur.close()
+        today = datetime.today()
+        # cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+        # cur.execute("INSERT INTO uploads (file_name, upload_time) VALUES (%s,%s)", [filenameImage, today])
+        # conn.commit()
+        # cur.close()
+        cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cur.execute("INSERT INTO records(uploadTime, upload) VALUES (%s, %s)",
+                    (today, filename))
+        mysql.connection.commit()
+        cur.close()
         msg = 'File successfully uploaded ' + file.filename + ' to the database!'
     else:
         msg = 'Invalid Upload only png, jpg, jpeg, gif'
