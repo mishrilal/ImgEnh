@@ -10,3 +10,4 @@ pillow~=8.3.2
 mysqlclient~=2.0.3
 mysql~=8.0.26
 flask-mysqldb~=0.2.0
+shortuuid~=1.0.1

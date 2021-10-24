@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Image Enhancement
+{% endblock %}
+{% block content %}
+    <div class="container">
+         {% for record in records %}
+              <div class="card col rowLayout">
+                <div class="card-body imgAlign">
+<!--                    <div class="card col-sm-1.5 cardLayout">-->
+<!--                        <div class="card-body cardBody">-->
+<!--                            {{record.uploadTime}}-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                    <div class="card col cardLayout">
+                        <img class="imgLayout card-img-top" src="static/uploads/{{record.upload}}">
+                        <div class="card-body cardBody">
+                            Uploaded Image
+                        </div>
+                    </div>
+
+                    <div class="card col cardLayout">
+                        {% if record.he != None %}
+                               <img class="imgLayout card-img-top" src="static/outputs/{{record.he}}">
+                            {% endif %}
+                        <div class="card-body cardBody">
+                            {% if record.he != None %}
+                                Analysed With HE
+                            {% else %}
+                                Not Analysed
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="card col cardLayout">
+                        {% if record.dhe != None %}
+                            <img class="imgLayout" src="static/outputs/{{record.dhe}}">
+                        {% endif %}
+                        <div class="card-body cardBody">
+                           {% if record.dhe != None %}
+                                Analysed With DHE
+                            {% else %}
+                                Not Analysed
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="card col cardLayout">
+                        {% if record.eff != None %}
+                           <img class="imgLayout" src="static/outputs/{{record.eff}}">
+                        {% endif %}
+                        <div class="card-body cardBody">
+                            {% if record.eff != None %}
+                                Analysed With EFF
+                            {% else %}
+                                Not Analysed
+                            {% endif %}
+                        </div>
+                    </div>
+
+
+                </div>
+              </div>
+
+        <br>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

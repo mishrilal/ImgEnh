@@ -8,6 +8,10 @@
     display:flex;
 }
 
+#history {
+    margin-right: 10px;
+}
+
 .btn-analysis {
     margin: 10px;
 }
@@ -77,4 +81,31 @@
 
 #downloadImg {
     display: none;
+}
+
+
+
+/*
+    History
+*/
+
+.rowLayout {
+    align-items: center;
+}
+
+.imgAlign {
+    display: flex;
+    align-items: center;
+}
+
+.imgLayout {
+    width: 100%;
+}
+.cardBody{
+    padding: 3px;
+    text-align: center;
+}
+
+.cardLayout{
+    margin: 10px;
 }
