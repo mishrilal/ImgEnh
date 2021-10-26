@@ -1,13 +1,42 @@
-numpy~=1.21.2
-matplotlib~=3.4.3
-imageio~=2.9.0
-scikit-image~=0.17.2
-scipy~=1.7.0
-flask~=2.0.2
-opencv-python~=4.5.3
-werkzeug~=2.0.1
-pillow~=8.3.2
-mysqlclient~=2.0.3
-mysql~=8.0.26
-flask-mysqldb~=0.2.0
-shortuuid~=1.0.1
+certifi==2021.10.8
+click @ file:///Users/runner/miniforge3/conda-bld/click_1634002691752/work
+cloudpickle @ file:///home/conda/feedstock_root/build_artifacts/cloudpickle_1631273254894/work
+colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1602866480661/work
+cycler==0.10.0
+cytoolz==0.11.0
+dask @ file:///home/conda/feedstock_root/build_artifacts/dask-core_1632274741088/work
+dataclasses @ file:///home/conda/feedstock_root/build_artifacts/dataclasses_1628958434797/work
+decorator @ file:///home/conda/feedstock_root/build_artifacts/decorator_1631346842025/work
+Flask @ file:///home/conda/feedstock_root/build_artifacts/flask_1633384704162/work
+Flask-MySQLdb==0.2.0
+fsspec @ file:///home/conda/feedstock_root/build_artifacts/fsspec_1634317979613/work
+gunicorn==20.1.0
+imagecodecs @ file:///Users/runner/miniforge3/conda-bld/imagecodecs_1634655228457/work
+imageio @ file:///home/conda/feedstock_root/build_artifacts/imageio_1594044661732/work
+itsdangerous @ file:///home/conda/feedstock_root/build_artifacts/itsdangerous_1621360792037/work
+Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1633656206378/work
+kiwisolver @ file:///Users/runner/miniforge3/conda-bld/kiwisolver_1630173773931/work
+locket==0.2.0
+MarkupSafe @ file:///Users/runner/miniforge3/conda-bld/markupsafe_1621455750847/work
+matplotlib @ file:///Users/runner/miniforge3/conda-bld/matplotlib-suite_1632416631285/work
+mysqlclient==2.0.3
+networkx @ file:///home/conda/feedstock_root/build_artifacts/networkx_1598210780226/work
+numpy @ file:///Users/runner/miniforge3/conda-bld/numpy_1629092090317/work
+olefile @ file:///home/conda/feedstock_root/build_artifacts/olefile_1602866521163/work
+packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1625323647219/work
+partd @ file:///home/conda/feedstock_root/build_artifacts/partd_1617910651905/work
+Pillow @ file:///Users/runner/miniforge3/conda-bld/pillow_1630696664467/work
+pyparsing==2.4.7
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+pytz==2021.3
+PyWavelets @ file:///Users/runner/miniforge3/conda-bld/pywavelets_1630699968283/work
+PyYAML==6.0
+scikit-image==0.17.2
+scipy @ file:///Users/runner/miniforge3/conda-bld/scipy_1624824941870/work
+shortuuid==1.0.1
+six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
+tifffile @ file:///home/conda/feedstock_root/build_artifacts/tifffile_1634152878987/work
+toolz @ file:///home/conda/feedstock_root/build_artifacts/toolz_1600973991856/work
+tornado @ file:///Users/runner/miniforge3/conda-bld/tornado_1625488956802/work
+tqdm @ file:///home/conda/feedstock_root/build_artifacts/tqdm_1632160078689/work
+Werkzeug @ file:///home/conda/feedstock_root/build_artifacts/werkzeug_1621518206714/work

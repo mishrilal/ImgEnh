@@ -24,6 +24,7 @@ $(document).ready(function(){
                 success:function(data){
                     $('#loader-icon').hide();
                     $('#targetLayer').append(data.htmlresponse).show();
+                    $('#Enhancement-btn').show()
                 },
                 resetForm: true
             });
