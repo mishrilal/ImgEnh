@@ -2,21 +2,21 @@ body{
     background: #121212;
 }
 .container {
-    padding-top: 20px;
+    padding-top: 1.5rem;
 }
 .navbar-brand {
-    margin-left: 10px;
+    margin-left: 1rem;
 }
 .formAlign {
     display:flex;
 }
 
 #history {
-    margin-right: 10px;
+    margin-right: 1rem;
 }
 
 .btn-analysis {
-    margin: 10px;
+    margin-right: 0.7rem;
 }
 
 .card{

@@ -3,6 +3,7 @@ $(document).ready(function(){
     $('#uploadImage').submit(function(event){
         if($('#uploadFile').val()){
             event.preventDefault();
+            disableDownloadBtn();
             $('#upload-form').hide();
             $('#upload-btn').hide();
             // $('#progress-bar').show();
@@ -33,32 +34,16 @@ $(document).ready(function(){
     });
 });
 
-// Runs analyseDHE from web.py
-$(function() {
-  $('#dhe').on('click', function(e) {
-    e.preventDefault();
-    $('#instructions').show();
-    $('#process-icon').show();
-    $('#displayLayer').hide();
-    clearBox('displayLayer');
 
-    $.getJSON('/dhe',
-    function(data) {
-        $('#instructions').hide();
-        $('#process-icon').hide();
-        $('#displayLayer').append(data.htmlresponse).show();
-    });
-    return false;
-  });
-});
-
-// Runs analyseHE from web.py
 $(function() {
+    // Runs analyseHE from web.py
   $('#he').on('click', function(e) {
       e.preventDefault();
-      $('#instructions').show();
+      disableDownloadBtn();
+      $('#instructions').hide();
       $('#process-icon').show();
       $('#displayLayer').hide();
+      $('#download-btn').hide();
       clearBox('displayLayer');
 
       $.getJSON('/he',
@@ -66,19 +51,44 @@ $(function() {
         $('#instructions').hide();
         $('#process-icon').hide();
         $('#displayLayer').append(data.htmlresponse).show();
+         $('#download-btn').show();
+        enableDownloadBtn();
       });
 
       return false;
   });
-});
 
-// Runs analyseEFF from web.py
-$(function() {
-   $('#eff').on('click', function(e) {
+
+  // Runs analyseDHE from app.py
+  $('#dhe').on('click', function(e) {
     e.preventDefault();
-    $('#instructions').show();
+    disableDownloadBtn();
+    $('#instructions').hide();
     $('#process-icon').show();
     $('#displayLayer').hide();
+    $('#download-btn').hide();
+    clearBox('displayLayer');
+
+    $.getJSON('/dhe',
+    function(data) {
+        $('#instructions').hide();
+        $('#process-icon').hide();
+        $('#displayLayer').append(data.htmlresponse).show();
+         $('#download-btn').show();
+        enableDownloadBtn();
+    });
+    return false;
+  });
+
+
+// Runs analyseEFF from app.py
+  $('#eff').on('click', function(e) {
+    e.preventDefault();
+    disableDownloadBtn();
+    $('#instructions').hide();
+    $('#process-icon').show();
+    $('#displayLayer').hide();
+    $('#download-btn').hide();
     clearBox('displayLayer');
 
     $.getJSON('/eff',
@@ -86,14 +96,25 @@ $(function() {
         $('#instructions').hide();
         $('#process-icon').hide();
         $('#displayLayer').append(data.htmlresponse).show();
+        $('#download-btn').show();
+        enableDownloadBtn();
     });
     return false;
   });
 });
+
 
 function clearBox(elementID) {
     let div = document.getElementById(elementID);
     while(div.firstChild) {
         div.removeChild(div.firstChild);
     }
+}
+
+function disableDownloadBtn() {
+    document.getElementById("download-btn").disabled = true;
+}
+
+function enableDownloadBtn() {
+    document.getElementById("download-btn").disabled = false;
 }

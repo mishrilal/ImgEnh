@@ -10,7 +10,7 @@
                 <div class="card-body imgAlign">
 
                     <div class="card col cardLayout border-success">
-                        <img class="imgLayout card-img-top" src="static/uploads/{{record.upload}}">
+                        <img class="imgLayout rounded-top" src="static/uploads/{{record.upload}}">
                         <div class="card-footer text-muted">
                             Uploaded Image
                         </div>
@@ -18,7 +18,7 @@
 
                     <div class="card col cardLayout border-info">
                         {% if record.he != None %}
-                               <img class="imgLayout card-img-top" src="static/outputs/{{record.he}}">
+                               <img class="imgLayout rounded-top" src="static/outputs/{{record.he}}">
                             {% endif %}
                         <div class="card-footer text-muted">
                             {% if record.he != None %}
@@ -31,7 +31,7 @@
 
                     <div class="card col cardLayout border-info">
                         {% if record.dhe != None %}
-                            <img class="imgLayout" src="static/outputs/{{record.dhe}}">
+                            <img class="imgLayout rounded-top" src="static/outputs/{{record.dhe}}">
                         {% endif %}
                         <div class="card-footer text-muted">
                            {% if record.dhe != None %}
@@ -44,7 +44,7 @@
 
                     <div class="card col cardLayout border-info">
                         {% if record.eff != None %}
-                           <img class="imgLayout" src="static/outputs/{{record.eff}}">
+                           <img class="imgLayout rounded-top" src="static/outputs/{{record.eff}}">
                         {% endif %}
                         <div class="card-footer text-muted">
                             {% if record.eff != None %}
