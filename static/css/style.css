@@ -15,6 +15,14 @@ body{
     margin-right: 1rem;
 }
 
+label {
+    color: darkgrey;
+}
+
+.modal-title {
+    color: azure;
+}
+
 .btn-analysis {
     margin-right: 0.7rem;
 }
