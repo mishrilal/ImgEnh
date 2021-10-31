@@ -153,3 +153,32 @@ label {
     display: block;
   }
 }
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+
+.cardLayout:hover .overlay {
+  display: block;
+  background: rgba(0, 0, 0, .3);
+}
+
+.button {
+    right: 0%;
+    bottom: 0%;
+    position: absolute;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+
+.cardLayout:hover .button {
+  opacity: 1;
+}

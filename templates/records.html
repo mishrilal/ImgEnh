@@ -14,6 +14,12 @@
                         <div class="card-footer text-muted">
                             Uploaded Image
                         </div>
+                        <div class="overlay"></div>
+                        <div class="button">
+                            <a href="static/uploads/{{record.upload}}" download>
+                                <img src="../static/img/download.png" width="64"/>
+                            </a>
+                        </div>
                     </div>
 
                     <div class="card col cardLayout border-info">
@@ -22,9 +28,15 @@
                             {% endif %}
                         <div class="card-footer text-muted">
                             {% if record.he != None %}
-                                Analysed with HE
+                                Enhanced with HE
+                            <div class="overlay"></div>
+                            <div class="button">
+                                <a href="static/outputs/{{record.he}}" download>
+                                    <img src="../static/img/download.png" width="64"/>
+                                </a>
+                            </div>
                             {% else %}
-                                Not Analysed with HE
+                                Not Enhanced with HE
                             {% endif %}
                         </div>
                     </div>
@@ -35,9 +47,15 @@
                         {% endif %}
                         <div class="card-footer text-muted">
                            {% if record.dhe != None %}
-                                Analysed with DHE
+                                Enhanced with DHE
+                            <div class="overlay"></div>
+                            <div class="button">
+                                <a href="static/outputs/{{record.dhe}}" download>
+                                    <img src="../static/img/download.png" width="64"/>
+                                </a>
+                            </div>
                             {% else %}
-                                Not Analysed with DHE
+                                Not Enhanced with DHE
                             {% endif %}
                         </div>
                     </div>
@@ -48,9 +66,15 @@
                         {% endif %}
                         <div class="card-footer text-muted">
                             {% if record.eff != None %}
-                                Analysed with EFF
+                                Enhanced with EFF
+                            <div class="overlay"></div>
+                            <div class="button">
+                                <a href="static/outputs/{{record.eff}}" download>
+                                    <img src="../static/img/download.png" width="64"/>
+                                </a>
+                            </div>
                             {% else %}
-                                Not Analysed with EFF
+                                Not Enhanced with EFF
                             {% endif %}
                         </div>
                     </div>
