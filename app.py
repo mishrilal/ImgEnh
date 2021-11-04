@@ -44,7 +44,7 @@ def hello_world():
 @app.route("/history", methods=["POST", "GET"])
 def history():
     cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cur.execute("SELECT * FROM records")
+    cur.execute("SELECT * FROM records ORDER BY id desc")
     records = cur.fetchall()
     mysql.connection.commit()
     cur.close()
