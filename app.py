@@ -29,7 +29,7 @@ app.config['DOWNLOAD_PATH'] = 'static/outputs'
 
 mysql = MySQL(app)
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 
 def allowed_file(filename):
