@@ -10,7 +10,7 @@ git clone https://github.com/mishrilal/ImgEnh.git
 ```bash
 pip install -r requirements.txt
 ```
-Import [Database](https://github.com/mishrilal/ImgEnh/tree/main/database)
+Import [Database](https://github.com/mishrilal/ImgEnh/tree/main/Database)
 
 
 ## Usage
