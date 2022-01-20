@@ -24,11 +24,11 @@ export FLASK_ENV=development
 flask run
 ```
 ## Outputs
-<img src="/Screenshots/6-IN.jpg" width = "425" align="left"/> <img src="/Screenshots/6-OUT.jpg" width = "425" align="right"/>
+<img src="/Screenshots/6-IN.jpg" width = "350" align="center"/>    <img src="/Screenshots/6-OUT.jpg" width = "350" align="center"/>
 
-<img src="/Screenshots/2-IN.jpg" width = "425" align="left"/> <img src="/Screenshots/2-OUT.jpg" width = "425" align="right"/>
+<img src="/Screenshots/2-IN.jpg" width = "350" align="center"/>    <img src="/Screenshots/2-OUT.jpg" width = "350" align="center"/>
 
-<img src="/Screenshots/3-IN.jpg" width = "425" align="left"/> <img src="/Screenshots/3-OUT.jpg" width = "425" align="right"/>
+<img src="/Screenshots/3-IN.jpg" width = "350" align="center"/>    <img src="/Screenshots/3-OUT.jpg" width = "350" align="center"/>
 
 
 
