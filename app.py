@@ -27,7 +27,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['UPLOAD_PATH'] = 'static/uploads'
 app.config['DOWNLOAD_PATH'] = 'static/outputs'
 
-mysql = MySQL(app)
+# mysql = MySQL(app)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -41,26 +41,26 @@ def hello_world():
     return render_template('index.html')
 
 
-@app.route("/history", methods=["POST", "GET"])
-def history():
-    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cur.execute("SELECT * FROM records ORDER BY id desc")
-    records = cur.fetchall()
-    mysql.connection.commit()
-    cur.close()
-    print(records)
-    return render_template('records.html', records=records)
+# @app.route("/history", methods=["POST", "GET"])
+# def history():
+#     cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+#     cur.execute("SELECT * FROM records ORDER BY id desc")
+#     records = cur.fetchall()
+#     mysql.connection.commit()
+#     cur.close()
+#     print(records)
+#     return render_template('records.html', records=records)
 
 
 @app.route('/dhe')
 def analyseDHE():
     global fileDownload
     fileDownload = dhe.analyse(fileAnalyse)
-    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cur.execute("UPDATE records SET dhe=%s WHERE upload=%s",
-                (fileDownload, fileAnalyse))
-    mysql.connection.commit()
-    cur.close()
+    # cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    # cur.execute("UPDATE records SET dhe=%s WHERE upload=%s",
+    #             (fileDownload, fileAnalyse))
+    # mysql.connection.commit()
+    # cur.close()
     return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=fileDownload)})
 
 
@@ -68,11 +68,11 @@ def analyseDHE():
 def analyseHE():
     global fileDownload
     fileDownload = he.analyse(fileAnalyse)
-    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cur.execute("UPDATE records SET he=%s WHERE upload=%s",
-                (fileDownload, fileAnalyse))
-    mysql.connection.commit()
-    cur.close()
+    # cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    # cur.execute("UPDATE records SET he=%s WHERE upload=%s",
+    #             (fileDownload, fileAnalyse))
+    # mysql.connection.commit()
+    # cur.close()
     return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=fileDownload)})
 
 
@@ -80,11 +80,11 @@ def analyseHE():
 def analyseEFF():
     global fileDownload
     fileDownload = eff.analyse(fileAnalyse)
-    cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cur.execute("UPDATE records SET eff=%s WHERE upload=%s",
-                (fileDownload, fileAnalyse))
-    mysql.connection.commit()
-    cur.close()
+    # cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    # cur.execute("UPDATE records SET eff=%s WHERE upload=%s",
+    #             (fileDownload, fileAnalyse))
+    # mysql.connection.commit()
+    # cur.close()
     return jsonify({'htmlresponse': render_template('responseOutput.html', filenameImage=fileDownload)})
 
 
@@ -108,11 +108,11 @@ def upload():
         file.save(systemPath + '/' + app.config['UPLOAD_FOLDER'] + '/' + filename)
 
         today = datetime.today()
-        cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cur.execute("INSERT INTO records(uploadTime, upload) VALUES (%s, %s)",
-                    (today, filename))
-        mysql.connection.commit()
-        cur.close()
+        # cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        # cur.execute("INSERT INTO records(uploadTime, upload) VALUES (%s, %s)",
+        #             (today, filename))
+        # mysql.connection.commit()
+        # cur.close()
 
         msg = 'File successfully uploaded ' + file.filename + ' to the database!'
     else:
